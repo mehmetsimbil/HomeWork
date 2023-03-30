@@ -24,18 +24,16 @@ public class CourseManager {
 
         for (Course course1:courses)
               {
-                if (course1.getPrice() < 1) {
-                    throw new Exception("Kurs fiyatı 0 dan küçük olamaz");
-                }
+
                 if(course1.getCourseName()==course.getCourseName()){
                     throw new Exception("Kurs ismi daha önce kullanılmış.");
                 }
-                else {
-                    courseDao.add(course);
-                    courses.add(course);
-                }
-
+              }
+        if (course.getPrice() < 1) {
+            throw new Exception("Kurs fiyatı 0 dan küçük olamaz");
         }
+        courseDao.add(course);
+        courses.add(course);
         for (Logger logger:loggers) {
             logger.log(course.getCourseName());
         }
